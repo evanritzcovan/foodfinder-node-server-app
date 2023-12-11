@@ -6,6 +6,7 @@ import { createRequire } from 'module';
 import UserRoutes from "./users/routes.js";
 import RestaurantRoutes from "./restaurants/routes.js";
 import BookmarksRoutes from "./bookmarks/routes.js";
+import "dotenv/config"
 
 const require = createRequire(import.meta.url);
 const mongoose = require('mongoose');
@@ -24,12 +25,7 @@ mongoose.connect(url,connectionParams)
     })
 
 const app = express();
-app.use(
-    cors({
-        credentials: true,
-        origin: "http://localhost:3000"
-    })
-);
+app.use(cors());
 const sessionOptions = {
     secret: "any string",
     resave: false,
@@ -46,4 +42,4 @@ SearchRoutes(app);
 UserRoutes(app);
 RestaurantRoutes(app);
 BookmarksRoutes(app);
-app.listen(4000);
+app.listen(process.env.PORT || 4000);
