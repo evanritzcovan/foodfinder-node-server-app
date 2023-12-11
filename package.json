@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "foodpilot-node-server-app",
+  "name": "foodfinder-node-server-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-  "author": "Matt Seungju Choi",
+  "author": "Evan Ritzcovan",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.2",

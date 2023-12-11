@@ -11,34 +11,32 @@ const require = createRequire(import.meta.url);
 const mongoose = require('mongoose');
 const url = 'mongodb+srv://evanritzcovan:ffpassword@foodfinder.18o5l1d.mongodb.net/?retryWrites=true&w=majority';
 const connectionParams={
-    useNewUrlParser: true,
-    useUnifiedTopology: true 
+  useNewUrlParser: true,
+  useUnifiedTopology: true 
 }
-mongoose.connect(url,connectionParams)
-    .then( () => {
-        console.log(`Connected to database: ${url}`);
-        console.log(mongoose.Connection);
-    })
-    .catch( (err) => {
-        console.error(`Error connecting to the database. \n${err}`);
-    })
+
+mongoose.connect(url,connectionParams).then( () => {
+  console.log(`Connected to database: ${mongoose.Connection}`);
+}).catch( (err) => {
+  console.error(`Error connecting to the database. \n${err}`);
+})
 
 const app = express();
-app.use(
-    cors({
-        credentials: true,
-        origin: "http://localhost:3000"
-    })
-);
+app.use(cors({
+  credentials: true,
+  origin: "http://localhost:3000" 
+}));
+
 const sessionOptions = {
-    secret: "any string",
-    resave: false,
-    saveUninitialized: false
+  secret: "any string",
+  resave: false,
+  saveUninitialized: false
 };
+
 app.use(session(sessionOptions));
 app.use(express.json());
 app.get('/', (req, res) => {
-    res.send('Hello, this is the root endpoint!');
+  res.send('Hello, this is the root endpoint!');
 });
 console.log("Server running successfully...")
 

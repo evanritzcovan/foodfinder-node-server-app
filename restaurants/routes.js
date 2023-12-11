@@ -3,7 +3,7 @@ import * as dao from "./dao.js";
 function RestaurantRoutes(app) {
   const createRestaurant = async (req, res) => {
     const restaurant = await dao.createRestaurant(req.body);
-    res.json(restaurant);
+      res.json(restaurant);
   };
 
   const deleteRestaurant = async (req, res) => {
@@ -13,6 +13,11 @@ function RestaurantRoutes(app) {
 
   const findRestaurantById = async (req, res) => {
     const restaurant = await dao.findRestaurantById(req.params.restaurantId);
+    res.json(restaurant);
+  };
+
+  const findRestaurantByYelpId = async (req, res) => {
+    const restaurant = await dao.findRestaurantByYelpId(req.params.restaurantYelpId);
     res.json(restaurant);
   };
   
@@ -25,6 +30,7 @@ function RestaurantRoutes(app) {
   app.post("/api/restaurants", createRestaurant);
   app.delete("/api/restaurants/:restaurantId", deleteRestaurant);
   app.get("/api/restaurants/:restaurantId", findRestaurantById);
+  app.get("/api/restaurants/yelpId/:restaurantYelpId", findRestaurantByYelpId);
   app.put("/api/restaurants/:restaurantId", updateRestaurant);
 }
 

@@ -1,6 +1,7 @@
-import restaurantModel from "./model.js";
+import model from "./model.js";
 
-export const createRestaurant = (restaurant) => restaurantModel.create(restaurant);
-export const findRestaurantById = (restaurantId) => restaurantModel.findById(restaurantId);
-export const deleteRestaurant = (restaurant) => restaurantModel.deleteOne(restaurant);
-export const updateRestaurant = (restaurantId, restaurant) => restaurantModel.updateOne({ _id: restaurantId }, { $set: restaurant });
+export const createRestaurant = (restaurant) => model.create(restaurant);
+// export const findRestaurantById = (restaurantId) => model.findById(restaurantId);
+export const findRestaurantByYelpId = (restaurantYelpId) => model.findOne({ restaurantYelpId: restaurantYelpId });
+export const deleteRestaurant = (restaurant) => model.deleteOne(restaurant);
+export const updateRestaurant = (restaurantId, restaurant) => model.updateOne({ _id: restaurantId }, { $set: restaurant });

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import restaurantSchema from "./schema.js";
+import schema from "./schema.js";
 
-const restaurantModel = mongoose.model("restaurants", restaurantSchema);
-export default restaurantModel;
+const model = mongoose.model("restaurants", schema);
+export default model;
