@@ -6,25 +6,26 @@ import { createRequire } from 'module';
 import UserRoutes from "./users/routes.js";
 import RestaurantRoutes from "./restaurants/routes.js";
 import BookmarksRoutes from "./bookmarks/routes.js";
+import ContactRoutes from "./contact/routes.js";
 
 const require = createRequire(import.meta.url);
 const mongoose = require('mongoose');
 const url = 'mongodb+srv://evanritzcovan:ffpassword@foodfinder.18o5l1d.mongodb.net/?retryWrites=true&w=majority';
-const connectionParams={
+const connectionParams = {
   useNewUrlParser: true,
-  useUnifiedTopology: true 
+  useUnifiedTopology: true
 }
 
-mongoose.connect(url,connectionParams).then( () => {
+mongoose.connect(url, connectionParams).then(() => {
   console.log(`Connected to database: ${mongoose.Connection}`);
-}).catch( (err) => {
+}).catch((err) => {
   console.error(`Error connecting to the database. \n${err}`);
 })
 
 const app = express();
 app.use(cors({
   credentials: true,
-  origin: "http://localhost:3000" 
+  origin: "http://localhost:3000"
 }));
 
 const sessionOptions = {
@@ -44,4 +45,6 @@ SearchRoutes(app);
 UserRoutes(app);
 RestaurantRoutes(app);
 BookmarksRoutes(app);
+ContactRoutes(app);
+
 app.listen(4000);
