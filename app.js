@@ -26,6 +26,7 @@ mongoose.connect(url, connectionParams).then(() => {
 const app = express();
 app.use(cors({
   credentials: true,
+  // origin: "https://foodfinder-react-web-app.netlify.app"
   origin: "http://localhost:3000"
 }));
 
@@ -35,12 +36,19 @@ const sessionOptions = {
   saveUninitialized: false
 };
 
+// if (process.env.NODE_ENV !== "development") {
+//   sessionOptions.proxy = true;
+//   sessionOptions.cookie = {
+//     sameSite: "none",
+//     secure: true,
+//   };
+// }
+
 app.use(session(sessionOptions));
 app.use(express.json());
 app.get('/', (req, res) => {
-  res.send('Hello, this is the root endpoint!');
+  res.send('This is the root endpoint');
 });
-console.log("Server running successfully...")
 
 SearchRoutes(app);
 UserRoutes(app);
