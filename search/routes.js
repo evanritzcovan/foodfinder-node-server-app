@@ -5,15 +5,14 @@ export const YELP_API_KEY = "egypJsq56bn5wlUmcF-S7lkOPW9Z-7RDdunPBztDTMqxqN9_M90
 
 function SearchRoutes(app) {
   const findRestaurants = async (req, res) => {
-    const { food } = req.params;
-    const { location } = req.params;
+    const { foodtype } = req.params;
+    const { zipcode } = req.params;
     
     try {
-      console.log("Find Restaurants accessed.");
       const options = {
         method: 'GET',
         url: `${YELP_API}/search`,
-        params: {location: location, term: food, sort_by: 'best_match', limit: '20'},
+        params: {location: zipcode, term: foodtype, sort_by: 'best_match', limit: '1'},
         headers: {
           accept: 'application/json',
           Authorization: `Bearer ${YELP_API_KEY}`
@@ -22,7 +21,7 @@ function SearchRoutes(app) {
 
       const response = await axios.request(options);
       const restaurants = response.data.businesses;
-      console.log(restaurants);
+      console.log(restaurants); // TODO Remove after finishing
       res.json(restaurants);
     } catch (error) {
       console.error(error);

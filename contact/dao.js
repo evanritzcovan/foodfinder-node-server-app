@@ -1,3 +1,3 @@
-import model from "./model.js";
+import contactModel from "./model.js";
 
-export const createContact = (contact) => model.create(contact);
+export const createContact = (contact) => contactModel.create(contact);

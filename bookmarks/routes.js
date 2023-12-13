@@ -3,33 +3,39 @@ import * as dao from "./dao.js";
 function BookmarksRoutes(app) {
   const findAllBookmarks = async (req, res) => {};
 
-  const createUserBookmarksRestaurant = async (req, res) => {
+  const createBookmark = async (req, res) => {
     const userId = req.params.userId;
     const restaurantId = req.params.restaurantId;
     const restaurantName = req.params.restaurantName;
-    const bookmarks = await dao.createUserBookmarksRestaurant(userId, restaurantId, restaurantName);
+    const bookmarks = await dao.createBookmark(userId, restaurantId, restaurantName);
     res.json(bookmarks);
   };
 
-  const deleteUserBookmarksRestaurant = async (req, res) => {};
-
-  const findUsersThatBookmarkRestaurant = async (req, res) => {
+  const deleteBookmark = async (req, res) => {
     const restaurantId = req.params.restaurantId;
-    const users = await dao.findUsersThatBookmarkRestaurant(restaurantId);
+    const userId = req.params.userId;
+    console.log(restaurantId, userId);
+    const bookmarks = await dao.deleteBookmark(userId, restaurantId);
+    res.json(bookmarks);
+  };
+
+  const findUsersBookmarked = async (req, res) => {
+    const restaurantId = req.params.restaurantId;
+    const users = await dao.findUsersBookmarked(restaurantId);
     res.json(users);
   };
 
-  const findRestaurantsThatUserBookmarks = async (req, res) => {
+  const findRestaurantsBookmarked = async (req, res) => {
     const userId = req.params.userId;
-    const bookmarks = await dao.findRestaurantsThatUserBookmarks(userId);
+    const bookmarks = await dao.findRestaurantsBookmarked(userId);
     res.json(bookmarks);
   };
 
   app.get("/api/bookmarks", findAllBookmarks);
-  app.post("/api/users/:userId/bookmarks/:restaurantId/:restaurantName", createUserBookmarksRestaurant);
-  app.delete("/api/users/:userId/bookmarks/:restaurantId", deleteUserBookmarksRestaurant);
-  app.get("/api/bookmarks/:restaurantId/users", findUsersThatBookmarkRestaurant);
-  app.get("/api/users/:userId/bookmarks", findRestaurantsThatUserBookmarks);
+  app.post("/api/users/:userId/bookmarks/:restaurantId/:restaurantName", createBookmark);
+  app.delete("/api/users/:userId/bookmarks/:restaurantId", deleteBookmark);
+  app.get("/api/bookmarks/:restaurantId/users", findUsersBookmarked);
+  app.get("/api/users/:userId/bookmarks", findRestaurantsBookmarked);
 }
 
 export default BookmarksRoutes;
