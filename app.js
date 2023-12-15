@@ -46,7 +46,7 @@ if (process.env.NODE_ENV !== "development") {
 app.use(session(sessionOptions));
 app.use(express.json());
 app.get('/', (req, res) => {
-  res.send(`This is the root endpoint for FoodFinder! View here: ${res.render(<a href="https://foodfinder-react-web-app.netlify.app">FoodFinder</a>)}`);
+  res.send(`This is the root endpoint for FoodFinder! View here: https://foodfinder-react-web-app.netlify.app`);
 });
 
 SearchRoutes(app);
