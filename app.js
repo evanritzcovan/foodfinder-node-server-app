@@ -17,7 +17,6 @@ const connectionParams = {
 }
 
 mongoose.connect(url, connectionParams).then(() => {
-  console.log("Connected to database");
   console.log(mongoose.Connection);
 }).catch((err) => {
   console.error(`Error connecting to the database. \n${err}`);
@@ -46,7 +45,7 @@ if (process.env.NODE_ENV !== "development") {
 app.use(session(sessionOptions));
 app.use(express.json());
 app.get('/', (req, res) => {
-  res.send(`This is the root endpoint for FoodFinder! View here: https://foodfinder-react-web-app.netlify.app`);
+  res.send("This is the root endpoint for FoodFinder! View here: https://foodfinder-react-web-app.netlify.app");
 });
 
 SearchRoutes(app);

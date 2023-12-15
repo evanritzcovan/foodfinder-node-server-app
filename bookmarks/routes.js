@@ -14,7 +14,6 @@ function BookmarksRoutes(app) {
   const deleteBookmark = async (req, res) => {
     const restaurantId = req.params.restaurantId;
     const userId = req.params.userId;
-    console.log(restaurantId, userId);
     const bookmarks = await dao.deleteBookmark(userId, restaurantId);
     res.json(bookmarks);
   };
