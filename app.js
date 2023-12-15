@@ -11,16 +11,8 @@ import ContactRoutes from "./contact/routes.js";
 const require = createRequire(import.meta.url);
 const mongoose = require('mongoose');
 const url = 'mongodb+srv://evanritzcovan:ffpassword@foodfinder.18o5l1d.mongodb.net/?retryWrites=true&w=majority';
-const connectionParams = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}
-
-mongoose.connect(url, connectionParams).then(() => {
-  console.log(mongoose.Connection);
-}).catch((err) => {
-  console.error(`Error connecting to the database. \n${err}`);
-})
+const connectionParams = { useNewUrlParser: true, useUnifiedTopology: true}
+mongoose.connect(url, connectionParams);
 
 const app = express();
 app.use(cors({
